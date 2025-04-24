@@ -1,5 +1,5 @@
-title: Your Name's Blog
-description: A blog about technology, programming, and other interesting topics
+title: Peter Reznick - Software Engineer
+description: Personal website of Peter Reznick
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "https://p-reznick.github.io" # the base hostname & protocol for your site
 
