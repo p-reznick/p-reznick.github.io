@@ -189,7 +189,7 @@ After reflecting I understood the problem: the algorithm isn't treating the edge
 
 Starting with a blank board with the top and bottom rows and left- and rightmost columns closed, the algorithm runs as it should:
 
-![Animated demonstration of crossword generation](assets/images/xword-generation.gif)
+![Animated demonstration of crossword generation](/assets/images/xword-generation.gif)
 
 Success!
 
