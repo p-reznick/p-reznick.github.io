@@ -6,9 +6,9 @@ categories: [algorithms, graph theory, puzzles]
 author: Your Name
 ---
 
-What Is xworder.io?
+## What Is xworder.io?
 
-Xworder is a system I built that procedurally generates crossword puzzles without any human intervention. A new crossword is displayed on xworder.io every day. Currently there are three stages to generating a crossword:
+[Xworder](http://xworder.io) is a system I built that procedurally generates crossword puzzles without any human intervention. A new crossword is displayed on xworder.io every day. Currently there are three stages to generating a crossword:
 
 1. Building an empty board, set with closed and open (black and white) cells,
 2. Finding a set of words or phrases that will fit the board,
