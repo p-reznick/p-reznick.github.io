@@ -96,7 +96,7 @@ If the center cell in a board has been selected, then the inverse is also the ce
 
 The question of how to keep the word spaces above a certain length is harder to solve than the question of symmetry. Scanning from side to side and up and down in order to figure out the size of existing wordspaces would tell us which ones are too small, but wouldn't tell us which cells are viable for closing. Furthermore, since two wordspaces with different lengths can cross in a single open cell (one in a row, the other in a column), should the vertical or horizontal wordspace length be reflected in the cell where they intersect? This section is displayed in the section of the crossword below: the orange is a wordspace of length 5, while the blue is a wordspace of 3 - which value should we use?
 
-[Image of intersecting wordspaces]
+![Image of intersecting wordspaces](/assets/images/wordspace-intersection.png)
 
 The key insight here is that we aren't really concerned about the size of a given wordspace, but rather, about an open cell's distance from the closest closed cell, whether row- or column-wise. If we can figure out how far each open cell is from a closed cell, then we can simply select any cell where the distance is greater than the minimum length we've specified as a constraint.
 
