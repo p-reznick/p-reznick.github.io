@@ -155,9 +155,29 @@ WHILE queue is not empty:
         INCREMENT distance
 ```
 
-Running this algorithm for a 17 x 17 size board with a minimum wordspace length of 3 we could produce the following:
+Running this algorithm for a 19 x 19 size board with a minimum wordspace length of 3 we could produce the following:
 
-[Image of board with algorithm]
+```
+_ _ _ # # # # _ _ _ # # # _ _ _ # # _
+# # _ _ _ # # # # # _ _ _ # # # # _ _
+# # _ _ _ # # # # # _ _ _ # # # _ _ _
+# # # _ _ _ # # # # _ _ _ # # _ _ _ #
+_ # # # # _ _ _ # # # # # _ _ _ _ # #
+_ _ # # # _ _ _ # # # _ _ _ _ _ # # _
+_ _ # # # _ _ _ # # # _ _ _ _ # # # _
+# _ _ _ # # # # # # _ _ _ # # # # # _
+# # _ _ _ _ # # _ _ _ # _ _ _ # # # #
+# # _ _ _ _ # # _ _ _ # # _ _ _ _ # #
+# # # # _ _ _ # _ _ _ # # _ _ _ _ # #
+_ # # # # # _ _ _ # # # # # # _ _ _ #
+_ # # # _ _ _ _ # # # _ _ _ # # # _ _
+_ # # _ _ _ _ _ # # # _ _ _ # # # _ _
+# # _ _ _ _ # # # # # _ _ _ # # # # _
+# _ _ _ # # _ _ _ # # # # _ _ _ # # #
+_ _ _ # # # _ _ _ # # # # # _ _ _ # #
+_ _ # # # # _ _ _ # # # # # _ _ _ # #
+_ # # _ _ _ # # # _ _ _ # # # # _ _ _
+```
 
 Looks good… or does it?
 
