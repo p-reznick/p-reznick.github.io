@@ -2,8 +2,8 @@
 layout: post
 title: "Using Graph Traversal To Find a Valid Crossword Board In an Arbitrary Grid"
 date: 2024-04-24
-categories: [algorithms, graph theory, puzzles]
-author: Your Name
+categories: []
+author: Peter Reznick
 ---
 
 ## What Is xworder.io?
@@ -20,7 +20,16 @@ This article is about step 1, which I implemented after already having developed
 
 In the course of building Xworder I improved the algorithm for solving an empty board (more in this in a later post) such that it could, in a reasonable amount of time, fill boards larger than the size of a mini, usually 5x5. Prior to this I had been manually writing the boards myself, e.g.:
 
-[Image of manual board]
+```
+[
+    ['#', '_', '_', '_', '#'],
+    ['_', '_', '_', '_', '_'],
+    ['_', '_', '_', '_', '_'],
+    ['_', '_', '_', '_', '_'],
+    ['#', '_', '_', '_', '#'],
+
+]
+```
 
 but as the boards the algorithm was filling increased in size, this manual approach became tedious, and worse, unscalable. In order to solve this problem I therefore set out to write a script that could generate a random, empty board made up of open and closed cells within the bounds of a set of constraints.
 
@@ -30,7 +39,16 @@ Stated more formally, the problem I set out to solve was: Create an MxN array of
 
 As I dug into an implementation, however, I realized this conception of the problem was insufficient, since it could produce something that looked like this:
 
-[Image of invalid board]
+```
+[
+    ['#', '_', '_', '_', '#'],
+    ['_', '#', '_', '_', '_'],
+    ['#', '#', '#', '_', '#'],
+    ['_', '#', '_', '#', '#'],
+    ['_', '#', '_', '_', '#'],
+
+]
+```
 
 This empty board is obviously unsuitable, but why? Thinking things through, I realized that:
 
@@ -52,7 +70,25 @@ Once we've built out an MxN array of arrays of empty strings, we could simply se
 
 The solution to this problem is relatively straightforward. Whenever we decide upon a cell to close, we can also close the cell at the "inverted" coordinates: M - x - 1 and N - y - 1. For example, if we are inserting at coordinates 3, 5 on a 15x15 board, the inverted coordinates are 15 - 3 - 1 and 15 - 5 - 1, (11, 9).
 
-[Image of symmetrical board]
+```
+[
+    ['_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_'],
+    ['_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_'],
+    ['_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_'],
+    ['_', '_', '_', '_', '_', 'A', '_', '_', '_', '_', '_', '_', '_', '_', '_'],
+    ['_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_'],
+    ['_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_'],
+    ['_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_'],
+    ['_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_'],
+    ['_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_'],
+    ['_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_'],
+    ['_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_'],
+    ['_', '_', '_', '_', '_', '_', '_', '_', '_', 'B', '_', '_', '_', '_', '_'],
+    ['_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_'],
+    ['_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_'],
+    ['_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_'],
+]
+```
 
 If the center cell in a board has been selected, then the inverse is also the center. Although only a single cell is closed in this case, this is acceptable because rotational symmetry has been preserved.
 
@@ -133,7 +169,7 @@ After reflecting I understood the problem: the algorithm isn't treating the edge
 
 Starting with a blank board with the top and bottom rows and left- and rightmost columns closed, the algorithm runs as it should:
 
-[Image of final board]
+![Animated demonstration of crossword generation](assets/images/xword-generation.gif)
 
 Success!
 
@@ -141,4 +177,22 @@ Success!
 
 Solving this problem was satisfying because it unlocked the ability to generate larger crosswords at scale and automated a pretty painful manual process. Beyond this though it was cool to apply a concept that had been largely academic – breadth-first-traversal – to a real-world problem and see how conceptualizing something as a graph really did produce real solutions, and solutions that are often visually striking and pretty.
 
-
+```
+_ _ _ # _ _ _ # # # _ _ _ # _ _ _
+_ _ _ _ _ _ _ # # # _ _ _ # _ _ _
+_ _ _ _ _ _ _ _ _ # _ _ _ _ _ _ _
+_ _ _ _ # # _ _ _ _ # # # _ _ _ #
+_ _ _ # # _ _ _ _ _ _ _ # _ _ _ _
+# # # _ _ _ # # # _ _ _ # # _ _ _
+# # # _ _ _ _ _ # # _ _ _ # _ _ _
+# # _ _ _ # _ _ _ # # # _ _ _ # #
+# # _ _ _ # _ _ _ _ _ # _ _ _ # #
+# # _ _ _ # # # _ _ _ # _ _ _ # #
+_ _ _ # _ _ _ # # _ _ _ _ _ # # #
+_ _ _ # # _ _ _ # # # _ _ _ # # #
+_ _ _ _ # _ _ _ _ _ _ _ # # _ _ _
+# _ _ _ # # # _ _ _ _ # # _ _ _ _
+_ _ _ _ _ _ _ # _ _ _ _ _ _ _ _ _
+_ _ _ # _ _ _ # # # _ _ _ _ _ _ _
+_ _ _ # _ _ _ # # # _ _ _ # _ _ _
+```
